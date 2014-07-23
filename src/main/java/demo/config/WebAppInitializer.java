@@ -11,7 +11,6 @@ import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import java.util.Set;
 
