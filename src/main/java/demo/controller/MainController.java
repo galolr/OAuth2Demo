@@ -1,6 +1,7 @@
 package demo.controller;
 
 import demo.entity.Dummy;
+import demo.entity.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,14 @@ public class MainController {
 
     @Autowired
     private Dummy dummy;
+
+    @Autowired
+    private EmployeeService employeeService;
+
+    @RequestMapping(value = "/findAllEmployees", method = RequestMethod.POST)
+    public String findAllEmployee() {
+        return "fn(" + employeeService.findAll() + ")";
+    }
 
     @RequestMapping
     public String main() {

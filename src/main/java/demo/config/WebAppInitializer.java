@@ -1,7 +1,9 @@
 package demo.config;
 
+import demo.entity.dao.impl.EmloyeeDAOImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.WebApplicationContext;
@@ -31,8 +33,9 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     private WebApplicationContext createRootContext(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(CoreConfig.class, SecurityConfig.class, OAuth2ServerConfig.OAuth2Config.class, MethodSecurityConfig.class);
-        rootContext.refresh();
+
+        rootContext.scan(ClassUtils.getPackageName(this.getClass()));
+        rootContext.scan("demo.entity");
 
         servletContext.addListener(new ContextLoaderListener(rootContext));
         servletContext.setInitParameter("defaultHtmlEscape", "true");

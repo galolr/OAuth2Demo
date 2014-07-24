@@ -29,6 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/findAllEmployees");
+    }
+
+    @Override
      protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().hasRole("USER").and().httpBasic();
         //super.configure(http);
